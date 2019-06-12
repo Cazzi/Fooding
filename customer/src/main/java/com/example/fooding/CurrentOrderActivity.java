@@ -1,6 +1,8 @@
 package com.example.fooding;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -30,6 +32,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private TextView distance_tv;
     private Button accept_btn;
     private Button review_btn;
+    private Button call_btn;
     private DatabaseReference database;
     private StorageReference storage;
     private StorageReference photoref;
@@ -55,6 +58,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
         distance_tv=findViewById(R.id.distance_tv);
         accept_btn=findViewById(R.id.accept_btn);
         review_btn=findViewById(R.id.review_btn);
+        call_btn=findViewById(R.id.call_btn);
         photo_iv=findViewById(R.id.photo_iv);
 
         database.child("customer").child(uid).child("currentOrder").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -108,6 +112,22 @@ public class CurrentOrderActivity extends AppCompatActivity {
                 }
             });
             dialogBuilder.show();
+        });
+
+        call_btn.setOnClickListener(e->{
+            database.child("restaurateur").child(rid).child("telephone").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:"+dataSnapshot.getValue().toString()));
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         });
 
         review_btn.setOnClickListener(view->{

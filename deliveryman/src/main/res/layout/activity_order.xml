@@ -14,38 +14,54 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_margin="20dp"
             android:text="FROM"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
-        <TextView
-            android:id="@+id/name_text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:hint="name"
-            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+            android:orientation="vertical"
+            android:background="@drawable/background_border">
+
+            <TextView
+                android:id="@+id/name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="name"
+                android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+            <TextView
+                android:id="@+id/address_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="address"
+                android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+        </LinearLayout>
+
+
 
         <TextView
-            android:id="@+id/address_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:hint="address"
-            android:textAppearance="@android:style/TextAppearance.Material.Large" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_margin="20dp"
             android:text="TO"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/background_border">
 
         <TextView
             android:id="@+id/deladdress_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_margin="20dp"
             android:hint="delivery address"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
@@ -53,15 +69,17 @@
             android:id="@+id/deltime_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_margin="20dp"
             android:hint="delivery time"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+    </LinearLayout>
 
         <TextView
             android:id="@+id/price_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_margin="20dp"
             android:hint="price"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
@@ -69,9 +87,11 @@
             android:id="@+id/info_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_margin="20dp"
             android:hint="info"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+
 
         <Button
             android:id="@+id/confirm_btn"
@@ -96,5 +116,14 @@
             android:text="GET INDICATION FOR CUSTOMER"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/call_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CALL RESTAURANT"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"/>
+
     </LinearLayout>
 </ScrollView>

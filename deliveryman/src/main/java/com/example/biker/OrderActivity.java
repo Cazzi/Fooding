@@ -40,6 +40,7 @@ public class OrderActivity extends AppCompatActivity {
     private Button confirm_btn;
     private Button rest_ind_btn;
     private Button cust_ind_btn;
+    private Button call_btn;
     private String rid;
     private String cid;
     private String oid;
@@ -70,6 +71,7 @@ public class OrderActivity extends AppCompatActivity {
         rest_ind_btn.setEnabled(false);
         cust_ind_btn=findViewById(R.id.cust_indication_btn);
         cust_ind_btn.setEnabled(false);
+        call_btn=findViewById(R.id.call_btn);
         String uid=currentUser.getUid();
 
         database.child("biker").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -81,7 +83,7 @@ public class OrderActivity extends AppCompatActivity {
 
                     deladdress_tv.setText(orderref.child("deliveryAddress").getValue().toString());
                     deltime_tv.setText(orderref.child("deliveryHour").getValue().toString());
-                    info_tv.setText(orderref.child("info").getValue().toString());
+                    info_tv.setText("Extra info: "+orderref.child("info").getValue().toString());
                     price_tv.setText(orderref.child("price").getValue().toString());
                     address_tv.setText(orderref.child("restaurantAddress").getValue().toString());
                     name_tv.setText(orderref.child("restaurantName").getValue().toString());
@@ -194,6 +196,22 @@ public class OrderActivity extends AppCompatActivity {
         cust_ind_btn.setOnClickListener(e->{
             Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr="+latcust+","+longcust));
             startActivity(intent);
+        });
+
+        call_btn.setOnClickListener(e->{
+            database.child("restaurateur").child(rid).child("telephone").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:"+dataSnapshot.getValue().toString()));
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         });
 
     }
